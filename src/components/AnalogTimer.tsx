@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import AnalogTimerHand from "./AnalogTimerHand";
+import AnalogTimerHand, {
+  AnalogHourHand,
+  AnalogMinuteHand,
+  AnalogSecondHand,
+} from "./AnalogTimerHand";
 import Tooltip from "./Tooltip";
 
 const AnalogTimer = () => {
@@ -25,9 +29,9 @@ const AnalogTimer = () => {
       onMouseLeave={() => toggleTooltip(false)}
     >
       {showTooltip ? <Tooltip>{milliseconds}</Tooltip> : null}
-      <AnalogTimerHand degree={90} thick={10} length={80} />
-      <AnalogTimerHand degree={45} thick={5} length={120} />
-      <AnalogTimerHand degree={180} thick={3} length={140} />
+      <AnalogHourHand />
+      <AnalogMinuteHand />
+      <AnalogSecondHand />
       <Origin />
     </TimerContainer>
   );

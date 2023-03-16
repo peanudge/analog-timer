@@ -43,4 +43,15 @@ const HandHead = styled.div<{ thick: number }>`
   border-right: ${(props) => props.thick / 2}px solid black;
   transform: rotate(45deg);
 `;
+
+export const AnalogHourHand = () => (
+  <AnalogTimerHand degree={90} thick={10} length={80} />
+);
+export const AnalogMinuteHand = () => (
+  <AnalogTimerHand degree={45} thick={8} length={120} />
+);
+export const AnalogSecondHand = () => (
+  <AnalogTimerHand degree={180} thick={5} length={140} />
+);
+
 export default AnalogTimerHand;
