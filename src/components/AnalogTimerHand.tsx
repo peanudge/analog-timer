@@ -25,11 +25,15 @@ const AnalogTimerHand: React.FC<Props> = ({
 };
 
 type HandProps = { degree: number; width: number; thick: number };
-const Hand = styled.div<HandProps>`
+const Hand = styled.div.attrs<HandProps>((props) => ({
+  style: {
+    transform: `translate(0, -50%) rotate(${props.degree}deg)`,
+  },
+}))<HandProps>`
   position: absolute;
   width: ${(props) => props.width}px;
   height: ${(props) => props.thick}px;
-  background-color: black;
+  background-color: grey;
   top: 50%;
   left: 50%;
   transform-origin: 0px 50%;
@@ -44,8 +48,8 @@ const HandHead = styled.div<{ thick: number }>`
   width: ${(props) => props.thick * 2}px;
   height: ${(props) => props.thick * 2}px;
   top: -${(props) => props.thick - props.thick / 2}px;
-  border-top: ${(props) => props.thick / 2}px solid black;
-  border-right: ${(props) => props.thick / 2}px solid black;
+  border-top: ${(props) => props.thick / 2}px solid grey;
+  border-right: ${(props) => props.thick / 2}px solid grey;
   transform: rotate(45deg);
 `;
 

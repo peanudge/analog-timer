@@ -40,7 +40,6 @@ const TooltipContainer = styled.div.attrs<{ left: number; top: number }>(
   left: 0;
   top: 0;
   user-select: none;
-  background-color: orange;
   padding: 0px 10px;
   z-index: 1;
 `;
