@@ -5,11 +5,12 @@ import {
   AnalogMinuteHand,
   AnalogSecondHand,
 } from "./AnalogTimerHand";
+import { TimerTickGroup } from "./TimerTick";
 import Tooltip from "./Tooltip";
 
-function padTo2Digit(num: number) {
+const padTo2Digit = (num: number) => {
   return num.toString().padStart(2, "0");
-}
+};
 
 const AnalogTimer = () => {
   const [hours, setHours] = useState(0);
@@ -26,7 +27,7 @@ const AnalogTimer = () => {
       let hours = Math.floor(minutes / 60);
       seconds = seconds % 60;
       minutes = minutes % 60;
-      hours = hours % 24;
+      hours = (hours + 9) % 24;
       setSeconds(seconds);
       setMinutes(minutes);
       setHours(hours);
@@ -53,15 +54,16 @@ const AnalogTimer = () => {
       <AnalogMinuteHand minutes={minutes} seconds={seconds} />
       <AnalogSecondHand seconds={seconds} />
       <Origin />
+      <TimerTickGroup />
     </TimerContainer>
   );
 };
 
 const TimerContainer = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: rgb(200, 200, 200);
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
+  border: 1px solid black;
 `;
 
 const Origin = styled.div`
