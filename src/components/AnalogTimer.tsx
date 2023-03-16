@@ -51,11 +51,11 @@ const AnalogTimer = () => {
 };
 
 const TimerContainer = styled.div`
+  flex-shrink: 0;
   width: 400px;
   height: 400px;
   border-radius: 50%;
   border: 1px solid grey;
-
   &:hover #TimerTooltip {
     display: block;
   }

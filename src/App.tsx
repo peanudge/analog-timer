@@ -12,7 +12,6 @@ function App() {
 const Container = styled.div`
   text-align: center;
   height: 100vh;
-  background-color: #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
