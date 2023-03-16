@@ -29,13 +29,11 @@ const Tooltip: React.FC<React.PropsWithChildren> = ({ children }) => {
 export default Tooltip;
 
 const TooltipContainer = styled.div.attrs<{ left: number; top: number }>(
-  (props) => {
-    return {
-      style: {
-        transform: `translate(${props.left}px,${props.top}px)`,
-      },
-    };
-  }
+  (props) => ({
+    style: {
+      transform: `translate(${props.left}px,${props.top}px)`,
+    },
+  })
 )<{ left: number; top: number }>`
   position: fixed;
   left: 0;
