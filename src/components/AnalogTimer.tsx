@@ -7,19 +7,35 @@ import {
 } from "./AnalogTimerHand";
 import Tooltip from "./Tooltip";
 
+function padTo2Digit(num: number) {
+  return num.toString().padStart(2, "0");
+}
+
 const AnalogTimer = () => {
-  const [milliseconds, setMilliseconds] = useState(Date.now());
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      setMilliseconds(Date.now());
-    }, 1000);
+      const milliseconds = Date.now();
+      let seconds = Math.floor(milliseconds / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      seconds = seconds % 60;
+      minutes = minutes % 60;
+      hours = hours % 24;
+      setSeconds(seconds);
+      setMinutes(minutes);
+      setHours(hours);
+    }, 100);
 
     return () => {
       clearInterval(timerId);
     };
-  }, []);
+  }, [setSeconds, setMinutes, setHours]);
 
   const toggleTooltip = (flag: boolean) => setShowTooltip(flag);
 
@@ -28,10 +44,14 @@ const AnalogTimer = () => {
       onMouseEnter={() => toggleTooltip(true)}
       onMouseLeave={() => toggleTooltip(false)}
     >
-      {showTooltip ? <Tooltip>{milliseconds}</Tooltip> : null}
-      <AnalogHourHand />
-      <AnalogMinuteHand />
-      <AnalogSecondHand />
+      {showTooltip ? (
+        <Tooltip>{`${padTo2Digit(hours)}:${padTo2Digit(minutes)}:${padTo2Digit(
+          seconds
+        )}`}</Tooltip>
+      ) : null}
+      <AnalogHourHand hours={hours} minutes={minutes} />
+      <AnalogMinuteHand minutes={minutes} seconds={seconds} />
+      <AnalogSecondHand seconds={seconds} />
       <Origin />
     </TimerContainer>
   );
