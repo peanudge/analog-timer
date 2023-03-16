@@ -17,8 +17,6 @@ const AnalogTimer = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const [showTooltip, setShowTooltip] = useState(false);
-
   useEffect(() => {
     const timerId = setInterval(() => {
       const milliseconds = Date.now();
@@ -38,18 +36,11 @@ const AnalogTimer = () => {
     };
   }, [setSeconds, setMinutes, setHours]);
 
-  const toggleTooltip = (flag: boolean) => setShowTooltip(flag);
-
   return (
-    <TimerContainer
-      onMouseEnter={() => toggleTooltip(true)}
-      onMouseLeave={() => toggleTooltip(false)}
-    >
-      {showTooltip ? (
-        <Tooltip>{`${padTo2Digit(hours)}:${padTo2Digit(minutes)}:${padTo2Digit(
-          seconds
-        )}`}</Tooltip>
-      ) : null}
+    <TimerContainer>
+      <Tooltip>{`${padTo2Digit(hours)}:${padTo2Digit(minutes)}:${padTo2Digit(
+        seconds
+      )}`}</Tooltip>
       <AnalogHourHand hours={hours} minutes={minutes} />
       <AnalogMinuteHand minutes={minutes} seconds={seconds} />
       <AnalogSecondHand seconds={seconds} />
@@ -64,6 +55,10 @@ const TimerContainer = styled.div`
   height: 400px;
   border-radius: 50%;
   border: 1px solid black;
+
+  &:hover #TimerTooltip {
+    display: block;
+  }
 `;
 
 const Origin = styled.div`

@@ -20,7 +20,7 @@ const Tooltip: React.FC<React.PropsWithChildren> = ({ children }) => {
   if (mousePos.left === undefined || mousePos.top === undefined) return null;
 
   return (
-    <TooltipContainer left={mousePos.left} top={mousePos.top}>
+    <TooltipContainer id="TimerTooltip" left={mousePos.left} top={mousePos.top}>
       <p>{children}</p>
     </TooltipContainer>
   );
@@ -35,6 +35,7 @@ const TooltipContainer = styled.div.attrs<{ left: number; top: number }>(
     },
   })
 )<{ left: number; top: number }>`
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
