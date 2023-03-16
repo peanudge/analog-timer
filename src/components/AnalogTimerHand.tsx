@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  convertTimeToHourDeg,
+  convertTimeToMinuteDeg,
+  convertTimeToSecondDeg,
+} from "../util/converters";
 
 type Props = {
   degree: number;
@@ -44,14 +49,36 @@ const HandHead = styled.div<{ thick: number }>`
   transform: rotate(45deg);
 `;
 
-export const AnalogHourHand = () => (
-  <AnalogTimerHand degree={90} thick={10} length={80} />
+export const AnalogHourHand: React.FC<{ hours?: number; minutes?: number }> = ({
+  hours = 0,
+  minutes = 0,
+}) => (
+  <AnalogTimerHand
+    degree={convertTimeToHourDeg(hours, minutes)}
+    thick={10}
+    length={80}
+  />
 );
-export const AnalogMinuteHand = () => (
-  <AnalogTimerHand degree={45} thick={8} length={120} />
+
+export const AnalogMinuteHand: React.FC<{
+  minutes?: number;
+  seconds?: number;
+}> = ({ minutes = 0, seconds = 0 }) => (
+  <AnalogTimerHand
+    degree={convertTimeToMinuteDeg(minutes, seconds)}
+    thick={8}
+    length={120}
+  />
 );
-export const AnalogSecondHand = () => (
-  <AnalogTimerHand degree={180} thick={5} length={140} />
+
+export const AnalogSecondHand: React.FC<{ seconds?: number }> = ({
+  seconds = 0,
+}) => (
+  <AnalogTimerHand
+    degree={convertTimeToSecondDeg(seconds)}
+    thick={5}
+    length={140}
+  />
 );
 
 export default AnalogTimerHand;
