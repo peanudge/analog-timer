@@ -1,27 +1,22 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import styled from "styled-components";
+import AnalogTimer from "./components/AnalogTimer";
 
 function App() {
-  const [milliseconds, setMilliseconds] = useState(Date.now());
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setMilliseconds(Date.now());
-    }, 100);
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
-
   return (
-    <div className="Container">
-      <div className="AnalogTimer" title={String(milliseconds)}>
-        <div className="Origin"></div>
-        <div className="Hand HourHand"></div>
-        <div className="Hand MinHand"></div>
-        <div className="Hand SecHand"></div>
-      </div>
-    </div>
+    <Container>
+      <AnalogTimer />
+    </Container>
   );
 }
+
+const Container = styled.div`
+  text-align: center;
+  height: 100vh;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default App;
