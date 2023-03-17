@@ -37,9 +37,11 @@ const TooltipContainer = styled.div.attrs<{ left: number; top: number }>(
 )<{ left: number; top: number }>`
   display: none;
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   user-select: none;
-  padding: 0px 10px;
   z-index: 1;
+  & > p {
+    margin-top: -1rem;
+  }
 `;
